@@ -1,0 +1,50 @@
+# environment.yml — conda environment for Flask + DuckDB + ML backend
+name: tickrush
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.11
+  - pip
+
+  # Core web framework
+  - flask>=2.3,<3.0
+  - flask-sqlalchemy>=3.0
+  - python-dotenv>=1.0
+
+  # DuckDB — the star of the show (fast analytics, Parquet/CSV support)
+  - duckdb>=1.0,<2.0
+  - duckdb-engine>=0.11
+
+  # Data science / ML essentials (optional but highly recommended)
+  - pandas>=2.0
+  - numpy>=1.24
+  - polars>=0.20          # blazing fast alternative to pandas
+  - pyarrow>=14.0         # for Parquet, Feather, etc.
+  - jupyter>=1.0          # for notebooks
+  - ipython
+
+  # Utilities
+  - tqdm
+  - rich                   # beautiful terminal output
+
+  # Development tools
+  - black                 # code formatter
+  - flake8                # linter
+  - pytest
+  - pytest-flask
+
+  # Optional: FastAPI-style validation (great for ML APIs)
+  - pydantic>=2.0
+
+  # pip-only packages (conda doesn't have latest)
+  - pip:
+      - flask-cors>=4.0          # if you serve frontend
+      - gunicorn>=22.0           # production server
+      - python-multipart         # for file uploads (CSV/Parquet)
+      - flask-smorest
+      - flask_migrate
+      - flask-paginate
+      - fsspec
